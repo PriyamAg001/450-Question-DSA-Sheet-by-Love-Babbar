@@ -1,0 +1,68 @@
+class Solution{
+public:
+    // arr : given array
+    // l : starting index of the array i.e 0
+    // r : ending index of the array i.e size-1
+    // k : find kth smallest element and return using this function
+    int kthSmallest(int arr[], int l, int r, int k) {
+        // Selection sort
+        for (int i = l; i <= r; i++) {
+            int min_index = i;
+            for (int j = i+1; j <= r; j++) {
+                if (arr[j] < arr[min_index]) {
+                    min_index = j;
+                }
+            }
+            // Swap arr[i] and arr[min_index]
+            int temp = arr[i];
+            arr[i] = arr[min_index];
+            arr[min_index] = temp;
+        }
+        // Return the kth smallest element
+        return arr[l+k-1];
+    }
+};
+
+
+
+class Solution{
+public:
+    // arr : given array
+    // l : starting index of the array i.e 0
+    // r : ending index of the array i.e size-1
+    // k : find kth smallest element and return using this function
+    int kthSmallest(int arr[], int l, int r, int k) {
+        // Bubble sort
+        for(int i = l; i <= r; i++) {     
+            for (int j = l; j < r-i+l; j++) { 
+                if (arr[j] > arr[j+1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+        // Return the kth smallest element
+        return arr[l+k-1];
+    }
+};
+
+
+
+class Solution{
+public:
+    // arr : given array
+    // l : starting index of the array i.e 0
+    // r : ending index of the array i.e size-1
+    // k : find kth smallest element and return using this function
+    int kthSmallest(int arr[], int l, int r, int k) {
+        priority_queue<int>pq;
+        for (int i=r; i>=0; i--){
+            pq.push(arr[i]);
+            if(pq.size()>k)
+            pq.pop();
+        }
+        return pq.top();
+    }
+};
