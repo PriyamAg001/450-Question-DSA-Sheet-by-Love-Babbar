@@ -1,0 +1,63 @@
+Code 1:
+class Solution{
+public:
+    void sort012(int a[], int n) {
+        int count0 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        
+        for(int i=0; i<n; i++){
+            if(a[i] == 0){
+                count0++;
+            }
+            else if(a[i] == 1){
+                count1++;
+            }
+            else{
+                count2++;
+            }
+        }
+        
+        for(int i=0; i<count0; i++){
+            a[i] = 0;
+        }
+        for(int i=count0; i<count0+count1; i++){
+            a[i] = 1;
+        }
+        for(int i=count0+count1; i<count0+count1+count2; i++){
+            a[i] = 2;
+        }
+    }
+    
+};
+
+Code 2:
+class Solution{
+public:
+    void sort012(int a[], int n){
+        int low = 0;
+        int mid = 0;
+        int high = n-1;
+        
+        while(mid <= high){
+            if(a[mid] == 0){
+                int temp = a[low];
+                a[low] = a[mid];
+                a[mid] = temp;
+                low++;
+                mid++;
+            }
+            
+            else if(a[mid] == 1){
+                mid++;
+            }
+            
+            else if(a[mid] == 2){
+                int temp = a[mid];
+                a[mid] = a[high];
+                a[high] = temp;
+                high--;
+            }
+        }
+    }
+};
