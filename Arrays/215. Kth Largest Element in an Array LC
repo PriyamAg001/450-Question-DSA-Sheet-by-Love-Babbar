@@ -1,0 +1,66 @@
+Code 1: Brute Force
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int n = nums.size();
+        // Bubble sort
+        for(int i = 0; i < n-1; i++) {     
+            for (int j = 0; j < n-i-1; j++) { 
+                if (nums[j] > nums[j+1]) {
+                    // Swap nums[j] and nums[j+1]
+                    int temp = nums[j];
+                    nums[j] = nums[j+1];
+                    nums[j+1] = temp;
+                }
+            }
+        }
+        return nums[n - k];
+    }
+};
+
+
+Code 2:
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        
+        int i;
+        for(i=0; i<n-k; i++){
+        }
+        return nums[i];
+    }
+};
+
+
+Code 3:
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int n = nums.size();
+        
+        sort(nums.begin(), nums.end());
+        return nums[n - k];
+    }
+};
+
+
+Code 4:
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int> queue;
+        for(int i=0; i<nums.size(); i++){
+            queue.push(nums[i]);
+        }
+
+        while(k-- > 1){
+            queue.pop();
+        }
+        return queue.top();
+    }
+};
